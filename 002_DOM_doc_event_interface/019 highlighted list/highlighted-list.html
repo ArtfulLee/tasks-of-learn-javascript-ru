@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      .selected {
+        background: #0f0;
+      }
+
+      li {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    Кликни на элемент списка, чтобы выделить его.
+    <br />
+
+    <ul id="ul">
+      <li>Кристофер Робин</li>
+      <li>Винни Пух</li>
+      <li>Тигра</li>
+      <li>Кенга</li>
+      <li>Кролик. Просто Кролик.</li>
+    </ul>
+
+    <script>
+      /////////////////////////////////////////////////////////////////////////////////
+      // https://learn.javascript.ru/task/selectable-list
+      //
+      // Создайте список, в котором элементы могут быть выделены, как в файловых менеджерах.
+      //
+      // При клике на элемент списка выделяется только этот элемент (добавляется класс .selected), отменяется выделение остальных элементов.
+      // Если клик сделан вместе с Ctrl (Cmd для Mac), то выделение переключается на элементе, но остальные элементы при этом не изменяются.
+      //
+      // P.S. В этом задании все элементы списка содержат только текст. Без вложенных тегов.
+      //
+      // P.P.S. Предотвратите стандартное для браузера выделение текста при кликах.
+      /////////////////////////////////////////////////////////////////////////////////
+
+      const list = document.body.querySelector("#ul");
+      console.log(list);
+      const liTagsOfList = document.querySelectorAll("#ul li");
+      console.log(liTagsOfList);
+
+      list.addEventListener("click", (event) => {
+        // Проверяем, событие 'click' произошло с зажатой клавишей Ctrl?
+        if (event.ctrlKey) {
+          event.target.classList.add("selected");
+        } else {
+          // Удаляем у всех li класс
+          liTagsOfList.forEach((li) => {
+            li.classList.remove("selected");
+          });
+          event.target.classList.add("selected");
+        }
+      });
+    </script>
+  </body>
+</html>
