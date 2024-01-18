@@ -17,7 +17,7 @@
     Кликни на элемент списка, чтобы выделить его.
     <br />
 
-    <ul id="ul">
+    <ul id="ul" onmousedown="return false">
       <li>Кристофер Робин</li>
       <li>Винни Пух</li>
       <li>Тигра</li>
@@ -48,7 +48,7 @@
         // Проверяем, событие 'click' произошло с зажатой клавишей Ctrl?
         if (event.ctrlKey) {
           event.target.classList.add("selected");
-        } else {
+        } else if (event.target.tagName === "LI") {
           // Удаляем у всех li класс
           liTagsOfList.forEach((li) => {
             li.classList.remove("selected");
