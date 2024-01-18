@@ -1,0 +1,44 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--     Напишите интерфейс для создания списка.
+
+    Для каждого пункта:
+    
+    Запрашивайте содержимое пункта у пользователя с помощью prompt.
+    Создавайте элемент <li> и добавляйте его к <ul>.
+    Продолжайте до тех пор, пока пользователь не отменит ввод (нажатием клавиши Esc или введя пустую строку).
+    Все элементы должны создаваться динамически.
+    
+    Если пользователь вводит HTML-теги, они должны обрабатываться как текст. -->
+
+    <ul id="elemList">
+        <h1>Create List</h1>
+    </ul>
+
+    <script>
+        function createList(elemList) {
+            let createListElement = prompt("Write new name for list", '');
+
+            if (createListElement === '' || createListElement === null) {
+
+            } else {
+                let elemLi = document.createElement('li');
+                elemLi.textContent = createListElement;
+                elemList.append(elemLi);
+                return createList(elemList);
+            }
+        }
+
+        createList(elemList);
+    </script>
+</body>
+
+</html>

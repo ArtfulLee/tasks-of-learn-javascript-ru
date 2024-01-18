@@ -1,0 +1,61 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="createCalendar.css">
+</head>
+
+<body>
+    <script>
+        function createCalendar(year, month) {
+            let arrTextDay = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']; // Может можно вытащить из Date()?
+            let dayOfWeek = [0, 1, 2, 3, 4, 5, 6]; // Может можно вытащить из Date()?
+            let countDayOfWeekText = 0;
+            let lastDayCurrentlyMonth = new Date(year, month + 1, 0);
+            let NumberDayOfMonthCounter = 1;
+
+            let tableForCalendar = document.createElement('table');
+
+            for (let rowsForCalendar = 0; rowsForCalendar < 6; rowsForCalendar++) {
+                let trForCalendar = document.createElement('tr');
+
+                for (let cellsForCalendar = 0; cellsForCalendar < 7; cellsForCalendar++) {
+                    let daysForCalendar = new Date(year, month, NumberDayOfMonthCounter);
+
+                    if (rowsForCalendar === 0) {
+                        let thForCalendar = document.createElement('th');
+                        thForCalendar.textContent = arrTextDay[countDayOfWeekText++];
+                        trForCalendar.append(thForCalendar);
+                        tableForCalendar.append(trForCalendar);
+                    } else {
+                        let tdForCalendar = document.createElement('td');
+
+                        if (lastDayCurrentlyMonth.getDate() !== NumberDayOfMonthCounter - 1) {
+                            if (daysForCalendar.getDay() === dayOfWeek[cellsForCalendar]) {
+                                tdForCalendar.textContent = NumberDayOfMonthCounter++;
+                            }
+                        }
+
+                        trForCalendar.append(tdForCalendar);
+                        tableForCalendar.append(trForCalendar);
+                    }
+                }
+            }
+            document.body.append(tableForCalendar);
+        };
+
+        createCalendar(2023, 1);
+    </script>
+</body>
+
+</html>
+
+<!-- Напишите функцию createCalendar(year, month).
+
+Вызов функции должен создать календарь для заданного месяца month в году year.
+
+Календарь должен быть таблицей, где неделя – это <tr>, а день – это <td>. У таблицы должен быть заголовок с названиями дней недели,
+каждый день – <th>, первым днём недели должен быть понедельник. -->

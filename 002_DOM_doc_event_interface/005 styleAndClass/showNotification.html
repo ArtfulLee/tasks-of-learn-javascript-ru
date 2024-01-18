@@ -1,0 +1,37 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function showNotification({
+            top = 0, // 10px от верхней границы окна (по умолчанию 0px)
+            right = 0, // 10px от правого края окна (по умолчанию 0px)
+            html, // HTML-уведомление
+        }) {
+            let notif = document.createElement(`div`);
+            notif.classList.add(`notif`);
+
+            notif.style.top = top + `px`;
+            notif.style.left = right + `px`;
+
+            notif.innerHTML = html;
+            document.body.append(notif);
+
+            setTimeout(() => notif.remove(), 1500);
+        }
+
+        setInterval(() => showNotification({
+            top: 10,
+            right: 10,
+            html: 'Hello',
+        }), 2000);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="clock.css">
+</head>
+
+<body>
+    <div class="divForClock">
+        <span class="spanForHours">hh</span>
+        <span>:</span>
+        <span class="spanForMinutes">mm</span>
+        <span>:</span>
+        <span class="spanForSeconds">ss</span>
+    </div>
+
+    <input type="button" onclick="clockStart()" value="Старт">
+    <input type="button" onclick="clockStop()" value="Стоп">
+
+    <script>
+        let timerForClock;
+        let HoursForSpanForHours;
+        let MinutesForSpanForMinutes;
+        let SecondsForSpanForSeconds;
+
+        function clockStart() {
+            let currentDate = new Date();
+
+            HoursForSpanForHours = currentDate.getHours();
+            if (currentDate.getHours() < 10) HoursForSpanForHours = '0' + HoursForSpanForHours;
+
+            MinutesForSpanForMinutes = currentDate.getMinutes();
+            if (currentDate.getMinutes() < 10) MinutesForSpanForMinutes = '0' + MinutesForSpanForMinutes;
+
+            SecondsForSpanForSeconds = currentDate.getSeconds();
+            if (currentDate.getSeconds() < 10) SecondsForSpanForSeconds = '0' + SecondsForSpanForSeconds;
+
+            let hours = document.body.querySelector(".spanForHours");
+            let minutes = document.body.querySelector(".spanForMinutes");
+            let seconds = document.body.querySelector(".spanForSeconds");
+
+            hours.innerHTML = HoursForSpanForHours;
+            minutes.innerHTML = MinutesForSpanForMinutes;
+            seconds.innerHTML = SecondsForSpanForSeconds;
+
+            if (!timerForClock) {
+                timerForClock = setInterval(() => clockStart(), 1000);
+            }
+        };
+
+        function clockStop() {
+            clearInterval(timerForClock);
+            timerForClock = null;
+        };
+
+    </script>
+</body>
+
+</html>
+
+<!--  -->
