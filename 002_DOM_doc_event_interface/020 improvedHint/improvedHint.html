@@ -91,9 +91,7 @@
         if (event.target.hasAttribute("data-tooltip") === false) return;
 
         tooltipForDelete = document.body.querySelectorAll(".tooltip");
-        tooltipForDelete.forEach((elem) => {
-          elem.parentNode.removeChild(elem);
-        });
+        deleteToolHint();
 
         improvedHintElem = document.createElement("div");
         hintAtrribute = event.target.getAttribute("data-tooltip");
@@ -102,6 +100,18 @@
 
         event.target.append(improvedHintElem);
       };
+
+      house.onmouseleave = () => {
+        if (!event.target.tagName === "BODY") return;
+        deleteToolHint();
+      };
+
+      function deleteToolHint() {
+        tooltipForDelete = document.body.querySelectorAll(".tooltip");
+        tooltipForDelete.forEach((elem) => {
+          elem.parentNode.removeChild(elem);
+        });
+      }
     </script>
   </body>
 </html>
