@@ -84,16 +84,19 @@
       const roof = document.body.querySelector("#roof");
       const link = document.body.querySelector("a");
       let improvedHintElem;
+      let tooltipForDelete;
+      let hintAtrribute;
 
       house.onmouseover = function improvedHint(event) {
-        console.log(event);
-
         if (event.target.hasAttribute("data-tooltip") === false) return;
 
-        let tooltipForDelete = document.body.querySelectorAll(".tooltip");
+        tooltipForDelete = document.body.querySelectorAll(".tooltip");
+        tooltipForDelete.forEach((elem) => {
+          elem.parentNode.removeChild(elem);
+        });
 
         improvedHintElem = document.createElement("div");
-        let hintAtrribute = event.target.getAttribute("data-tooltip");
+        hintAtrribute = event.target.getAttribute("data-tooltip");
         improvedHintElem.classList.add("tooltip");
         improvedHintElem.innerHTML = hintAtrribute;
 
